@@ -5,7 +5,9 @@
 
 JavaScript library for generating QR codes with a logo and styling.
 
-体验完整功能 [https://yanyubao.tseo.cn/Supplier/BeautyQrcodeMgr/index.html]
+体验完整功能 <https://yanyubao.tseo.cn/wa/beautyqrcode.html>
+
+部署在自己的APP或者小程序中，请使用[延誉宝SaaS云后台](https://yanyubao.tseo.cn)设置。
 
 Try it here https://qr-code-styling.com
 
