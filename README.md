@@ -91,14 +91,16 @@ width                  |number                   |`300`        |Size of canvas
 height                 |number                   |`300`        |Size of canvas
 type                   |string (`'canvas' 'svg'`)|`canvas`     |The type of the element that will be rendered
 data                   |string                   |             |The date will be encoded to the QR code
-image                  |string                   |             |The image will be copied to the center of the QR code
+image                  |string                   |             |二维码中间的Logo图片。The image will be copied to the center of the QR code
+imageOptions           |object                   |             |Logo图片的选项。Specific image options, details see below
+textTopOptions          |object                   |             |二维码上方的文字选项
+textBottomOptions       |object                   |             |二维码下方的文字选项
 margin                 |number                   |`0`          |Margin around canvas
 qrOptions              |object                   |             |Options will be passed to `qrcode-generator` lib
-imageOptions           |object                   |             |Specific image options, details see below
 dotsOptions            |object                   |             |Dots styling options
 cornersSquareOptions   |object                   |             |Square in the corners styling options
 cornersDotOptionsHelper|object                   |             |Dots in the corners styling options
-backgroundOptions      |object                   |             |QR background styling options
+backgroundOptions      |object                   |             |二维码背景图片选项
 
 `options.qrOptions` structure
 
@@ -113,9 +115,27 @@ errorCorrectionLevel|string (`'L' 'M' 'Q' 'H'`)                        |`'Q'`
 Property          |Type                                   |Default Value|Description
 ------------------|---------------------------------------|-------------|------------------------------------------------------------------------------
 hideBackgroundDots|boolean                                |`true`       |Hide all dots covered by the image
-imageSize         |number                                 |`0.4`        |Coefficient of the image size. Not recommended to use ove 0.5. Lower is better
+imageSize         |number                                 |`0.4`        |Logo图片大小的系数，0.1~1之间，建议不超过0.5。Coefficient of the image size. Not recommended to use ove 0.5. Lower is better
 margin            |number                                 |`0`          |Margin of the image in px
 crossOrigin       |string(`'anonymous' 'use-credentials'`)|             |Set "anonymous" if you want to download QR code from other origins.
+
+
+`options.textTopOptions` structure
+
+Property|Type          |Description                       |Default Value|Description
+--------|--------------|----------------------------------|-------------|-------------------
+words   |string        |在二维码上方添加文字说明            |              | 文字的内容
+color   |string        |设置文字的颜色                     |`'#000'`      |文字的颜色
+fontSize    |number        |设置文字的大小                     |              |
+
+`options.textBottomOptions` structure
+
+Property|Type          |Description                       |Default Value|Description
+--------|--------------|----------------------------------|-------------|-------------------
+words   |string        |在二维码下方添加文字说明            |              | 文字的内容
+color   |string        |设置文字的颜色                     |`'#000'`      |文字的颜色
+fontSize    |number        |设置文字的大小                     |              |
+
 
 `options.dotsOptions` structure
 
@@ -125,12 +145,14 @@ color   |string                                                                 
 gradient|object                                                                        |             |Gradient of QR dots
 type    |string (`'rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded'`)|`'square'`   |Style of QR dots
 
+
 `options.backgroundOptions` structure
 
-Property|Type  |Default Value
---------|------|-------------
-color   |string|`'#fff'`
-gradient|object|
+Property|Type  |Default Value|Description
+--------|------|-------------|-----------------
+color   |string|`'#fff'`     |
+gradient|object|             |
+bg_image|string|空字符串      |二维码的底图，建议使用方形png图片，可以为透明或带底色。
 
 `options.cornersSquareOptions` structure
 
@@ -210,7 +232,7 @@ Property |Type                                |Default Value|Description
 ---------|------------------------------------|-------------|-----------------------------------------------------
 name     |string                              |`'qr'`       |Name of the downloaded file
 extension|string (`'png' 'jpeg' 'webp' 'svg'`)|`'png'`      |File extension
-
+imgSize  |string                              |400          |（功能暂未实现）保存的图片的像素，默认为400px。
 
 ### License
 

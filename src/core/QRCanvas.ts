@@ -32,13 +32,13 @@ export default class QRCanvas {
   _options: RequiredOptions;
   _qr?: QRCode;
   _image?: HTMLImageElement;
-
   //TODO don't pass all options to this class
   constructor(options: RequiredOptions) {
     this._canvas = document.createElement("canvas");
     this._canvas.width = options.width;
     this._canvas.height = options.height;
     this._options = options;
+	//console.log('125874',this._options)
   }
 
   get context(): CanvasRenderingContext2D | null {
@@ -77,9 +77,24 @@ export default class QRCanvas {
     };
 
     this._qr = qr;
-
+	this.clear();
+	
+	if (this._options.textTopOptions && this._options.textTopOptions.words) {
+		this.drawTopText();
+	
+	}
+	
+	if (this._options.textBottomOptions && this._options.textBottomOptions.words) {
+		this.drowBottomText();
+	
+	}
+	
+	this.drawBackground();
+	
     if (this._options.image) {
+			
       await this.loadImage();
+			
       if (!this._image) return;
       const { imageOptions, qrOptions } = this._options;
       const coverLevel = imageOptions.imageSize * errorCorrectionPercents[qrOptions.errorCorrectionLevel];
@@ -92,11 +107,13 @@ export default class QRCanvas {
         maxHiddenAxisDots: count - 14,
         dotSize
       });
+		
     }
+	
 
-    this.clear();
-    this.drawBackground();
+
     this.drawDots((i: number, j: number): boolean => {
+	
       if (this._options.imageOptions.hideBackgroundDots) {
         if (
           i >= (count - drawImageSize.hideXDots) / 2 &&
@@ -118,17 +135,20 @@ export default class QRCanvas {
 
       return true;
     });
-    this.drawCorners();
 
+    this.drawCorners();
+	
     if (this._options.image) {
       this.drawImage({ width: drawImageSize.width, height: drawImageSize.height, count, dotSize });
     }
+	
+	
+		
   }
 
   drawBackground(): void {
     const canvasContext = this.context;
     const options = this._options;
-
     if (canvasContext) {
       if (options.backgroundOptions.gradient) {
         const gradientOptions = options.backgroundOptions.gradient;
@@ -146,13 +166,187 @@ export default class QRCanvas {
         });
 
         canvasContext.fillStyle = gradient;
-      } else if (options.backgroundOptions.color) {
+		canvasContext.fillRect(0, 0, this._canvas.width, this._canvas.height);
+      }else if (options.backgroundOptions.bg_image) {
+		  
+		const bg_image = document.createElement('img');
+		//const bg_image = new Image();
+	//	console.log('1111',bg_image)
+		  
+		bg_image.crossOrigin = "anonymous" ;
+		
+		const width = this._canvas.width;
+		const height = this._canvas.height;
+		const margin = this._options.margin - 40;
+		
+		/* if(this._options.margin - 40 < 0){
+			 margin = 0;
+			
+		} */
+		
+		bg_image.src = options.backgroundOptions.bg_image;
+		bg_image.onload = function(){
+
+			canvasContext.drawImage(bg_image,margin,margin,width - margin*2,height - margin*2);
+	
+		};
+		
+		bg_image.onerror = () => {
+		  //console.log('加载失败')
+		    alert('图片加载失败') 
+		}
+		
+	  }else if (options.backgroundOptions.color) {
+	//console.log('22222')
         canvasContext.fillStyle = options.backgroundOptions.color;
+		canvasContext.fillRect(0, 0, this._canvas.width, this._canvas.height);
       }
-      canvasContext.fillRect(0, 0, this._canvas.width, this._canvas.height);
+      
     }
   }
-
+  
+  drawTopText(): void {
+	const canvasContext = this.context;
+	const options = this._options;
+	if (canvasContext) {
+		
+	  if(options.textTopOptions && options.textTopOptions.words) {
+		//console.log('sss',options.textTopOptions.words)
+		const width = this._canvas.width/2;
+		canvasContext.textAlign="center"; 
+		
+		if(options.textTopOptions && options.textTopOptions.color) {
+		  const grd = canvasContext.createLinearGradient(0,100,100,10);
+		  grd.addColorStop(0,options.textTopOptions.color);
+		  canvasContext.fillStyle = grd;
+		 // console.log('sss',options.textTopOptions.color)
+		}
+		if(options.textTopOptions && options.textTopOptions.fontSize) {
+		  canvasContext.font = options.textTopOptions.fontSize + "px" + " " + "Arial";
+		 // console.log('sss',canvasContext.font)
+		 if(options.margin && !options.textBottomOptions ){
+			 console.log('4444',options.margin)
+			 if(options.backgroundOptions && options.backgroundOptions.bg_image){
+				 this._options.margin = options.margin + options.textTopOptions.fontSize ;
+				  console.log('3333',options.margin)
+			 }else{
+				 if(options.textTopOptions.words.length > 1){
+				  	this._options.margin = options.margin
+				 	 console.log('2222',options.margin)
+				  }else{
+				   this._options.margin = options.margin + options.textTopOptions.fontSize ;
+				 console.log('1111',options.margin)
+				  }
+			 }
+			
+			
+		 }else if(!options.margin && !options.textBottomOptions){
+			 console.log('5555',options.margin)
+			  this._options.margin = options.textTopOptions.fontSize;
+			 
+			 
+			  
+		 }
+		 else if(options.margin && options.textBottomOptions){
+			 if(options.textBottomOptions.fontSize && options.textBottomOptions.words && options.textBottomOptions.words.length > 0){
+				 options.margin = this._options.margin + options.textBottomOptions.fontSize/2 ;
+				 console.log('6666',options.margin)
+			 }else{
+				 this._options.margin = options.margin + options.textTopOptions.fontSize;
+				 console.log('7777',options.margin)
+			 }
+				
+				
+			}
+		  
+		  //this._options.margin = this._options.margin + 200 ;
+		  
+		  //console.log('rrrrrr', this._options.margin)
+		}
+		//const font = options.textTopOptions.font;
+		if(options.textTopOptions && options.textTopOptions.fontSize) {
+		  canvasContext.fillText(options.textTopOptions.words, width, options.textTopOptions.fontSize);
+		}
+		
+		
+		
+		//console.log('sss',canvasContext.fillText)
+	  }
+		
+	}
+	
+	
+  }
+	
+	drowBottomText(): void {
+	const canvasContext = this.context;
+	const options = this._options;
+	if (canvasContext) {
+		
+	  if(options.textBottomOptions && options.textBottomOptions.words) {
+		//console.log('sss',options.textBottomOptions.words)
+		const width = this._canvas.width/2;
+		canvasContext.textAlign="center"; 
+		
+		if(options.textBottomOptions.color) {
+		  const grd = canvasContext.createLinearGradient(0,100,100,10);
+		  grd.addColorStop(0,options.textBottomOptions.color);
+		  canvasContext.fillStyle = grd;
+		  //console.log('sss',options.textBottomOptions.color)
+		}
+		if(options.textBottomOptions && options.textBottomOptions.fontSize) {
+		  canvasContext.font = options.textBottomOptions.fontSize + "px" + " " + "Arial";
+		  //console.log('sss',canvasContext.font)
+			
+			if(options.margin && !options.textTopOptions){
+				if(options.backgroundOptions && options.backgroundOptions.bg_image){
+					this._options.margin = options.margin + options.textBottomOptions.fontSize ;
+				}else{
+					if(options.textBottomOptions.words.length > 1){
+						this._options.margin = options.margin
+						console.log('asdf',options.margin)
+					}else{
+						this._options.margin = options.margin + options.textBottomOptions.fontSize;
+					console.log('asdfg',this._options.margin)
+					}
+				}
+				
+			}else if(!options.margin && !options.textTopOptions){
+				/* if(options.textBottomOptions && options.textBottomOptions.fontSize && options.textBottomOptions.fontSize > 20){
+					this._options.margin = options.textBottomOptions.fontSize + 20;
+				} */
+					this._options.margin = options.textBottomOptions.fontSize;
+				
+			}
+			else if(options.margin && options.textTopOptions ){
+			
+				if(options.textTopOptions.fontSize && options.textTopOptions.words && options.textTopOptions.words.length > 0){
+					 this._options.margin = options.margin + options.textTopOptions.fontSize/2 ;
+					 console.log('6666',options.margin)
+				}else{
+					 this._options.margin = options.margin + options.textBottomOptions.fontSize;
+					 console.log('7777',options.margin)
+				}
+					
+			}
+		  //this._options.margin = this._options.margin + 200 ;
+		  //console.log('rrrrrr', this._options.margin)
+		}
+		
+			if(options.textBottomOptions && options.textBottomOptions.fontSize) {
+				//const text001 = this._canvas.height - this._options.margin + options.textBottomOptions.fontSize;
+				canvasContext.fillText(options.textBottomOptions.words, width, this._canvas.height - 10);
+			}
+		//console.log('sss',canvasContext.fillText)
+	  }
+		
+	}
+	
+	
+	}
+  
+  
+	
   drawDots(filter?: FilterFunction): void {
     if (!this._qr) {
       throw "QR code is not defined";
@@ -167,9 +361,9 @@ export default class QRCanvas {
     const options = this._options;
     const count = this._qr.getModuleCount();
 
-    if (count > options.width || count > options.height) {
-      throw "The canvas is too small.";
-    }
+		if (count > options.width || count > options.height) {
+			throw "The canvas is too small.";
+		}
 
     const minSize = Math.min(options.width, options.height) - options.margin * 2;
     const dotSize = Math.floor(minSize / count);
@@ -227,7 +421,7 @@ export default class QRCanvas {
     if (!this._qr) {
       throw "QR code is not defined";
     }
-
+	//console.log('7584564123')
     const canvasContext = this.context;
 
     if (!canvasContext) {
@@ -366,14 +560,25 @@ export default class QRCanvas {
       if (typeof options.imageOptions.crossOrigin === "string") {
         image.crossOrigin = options.imageOptions.crossOrigin;
       }
-
-      this._image = image;
+	
+	  this._image = image;
+		//console.lsssog('66666666',image)
+		//console.log('ss66666666',image.src)
+		
       image.onload = (): void => {
+			//console.log('aaa')
         resolve();
       };
+			image.onerror = () => {
+			  console.log('加载失败')
+			     alert('图片加载失败')
+			}
       image.src = options.image;
+	
     });
   }
+	
+	
 
   drawImage({
     width,
@@ -403,9 +608,11 @@ export default class QRCanvas {
     const dy = yBeginning + options.imageOptions.margin + (count * dotSize - height) / 2;
     const dw = width - options.imageOptions.margin * 2;
     const dh = height - options.imageOptions.margin * 2;
-
+	
     canvasContext.drawImage(this._image, dx, dy, dw < 0 ? 0 : dw, dh < 0 ? 0 : dh);
   }
+	
+ 
 
   _createGradient({
     context,

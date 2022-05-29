@@ -28,6 +28,7 @@ export interface RequiredOptions extends Options {
   backgroundOptions: {
     color: string;
     gradient?: Gradient;
+	bg_image?: string;
   };
 }
 

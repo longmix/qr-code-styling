@@ -5,25 +5,75 @@
         <title>QR Code Styling</title>
     </head>
     <body>
-        <div id="canvas"></div>
-        <div id="canvas2"></div>
+			
+		<style type="text/css">
+			.qrcode001 {
+				
+				
+			}
+			
+			.qrcode001 canvas {
+				max-width: 100%;
+			}
+			
+			.qrcode001 svg {
+				max-width: 100%;
+			}
+		</style>
+			
+        <div class="qrcode001" id="canvas"></div>
+		
+		<br />
+        <div class="qrcode001" id="canvas2"></div>
+		<br />
+		
+		<div class="qrcode001" id="canvas3"></div>
+		<br />
+		
+		<div class="qrcode001" id="canvas4"></div>
+		<br />
+		
+		<div class="qrcode001" id="canvas5"></div>
+		<br />
+		
+		<div class="qrcode001" id="canvas6"></div>
+		<br />
+		
+		<div class="qrcode001" id="canvas7"></div>
+		<br />
+		
+		<div class="qrcode001" id="canvas8"></div>
+		<br />
+		<div class="qrcode001" id="canvas9"></div>
+		<div class="qrcode001" id="canvas10"></div>
+		<div class="qrcode001" id="canvas11"></div>
+		<div class="qrcode001" id="canvas12"></div>
+		<div class="qrcode001" id="canvas13"></div>
+		
         <script type="text/javascript">
-            const options = {
+            const	current_option01 = {
               width: 500,
               height: 500,
               data: "h",
-              image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+             // image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+			  /* textTopOptions:{
+				words:"二维码",
+				color:"#000000",
+				font:"50",
+			  } , */
               dotsOptions: {
-                type: "extra-rounded",
-                gradient: {
-                  type: "linear", //radial,
-                  rotation: Math.PI/2,
-                  colorStops: [{ offset: 0, color: 'blue' }, { offset: 0.5, color: 'red' }, { offset: 1, color: 'green' }]
-                },
+                type: "dots",
+							  color:'#3ea1f4',
+                // gradient: {
+                //   type: "linear", //radial,
+                //   rotation: Math.PI/2,
+                //   colorStops: [{ offset: 0, color: 'blue' }, { offset: 0.5, color: 'red' }, { offset: 1, color: 'green' }]
+                // },
               },
               cornersSquareOptions: {
-                type: "rounded",
-                gradient: {
+                type: "square",
+							  color:'#3ea1f4',
+                /* gradient: {
                   type: "linear",
                   rotation: Math.PI * 0.2,
                   colorStops: [{
@@ -33,22 +83,500 @@
                     offset: 1,
                     color: 'red'
                   }]
-                },
+                }, */
               },
+							cornersDotOptions: {
+							type: "square",
+							color:'#3ea1f4',
+							},
               imageOptions: {
                 crossOrigin: "anonymous",
-                margin: 30
-              }
+                //margin: 30
+              },
+							/* backgroundOptions: {
+							color:"#000000",
+							http://saas.tseo.cn/staticsvc/uploads/2022/03/21/1af16205353a0e96e9851f52c22b20a11117.jpg
+							bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F02%2F2109242332225H9-0-lp.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650190197&t=b719eefc9b3f02d6773d04d4329e402a"
+							} */
             };
-          const qrCode = new QRCodeStyling(options);
-          const qrCode2 = new QRCodeStyling({
+			
+			
+		  //options.image = './public/static/usercenter_goto_home.svg';
+          //const qrCode = new QRCodeStyling(options);
+		  
+		 // options.width = 200;
+		  //options.height = 200;
+		  //options.image = './public/static/VIP.png';
+		  
+          /* const qrCode2 = new QRCodeStyling({
             ...options,
             type: 'svg',
-          });
-
-            qrCode.append(document.getElementById("canvas"));
-            qrCode2.append(document.getElementById("canvas2"));
-
+          }); */
+			
+		 const	current_option02 ={
+		width:200,
+		height:200,
+		data:"123",
+			image: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2Ff218b0a9c3369345b255e5e22f99b3de.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650503841&t=1f1ee0b1f77db6e158ecca0b72c5549f",
+			dotsOptions: {
+			  type: "square",
+			  color: "#000000",
+			},
+			cornersSquareOptions: {
+			  type: "square",
+			    /* gradient: {
+			      type: "linear",
+			      rotation: Math.PI * 0.2,
+			      colorStops: [{
+			        offset: 0,
+			        color: 'blue'
+			      }, {
+			        offset: 1,
+			        color: 'red'
+			      }]
+			    }, */
+			  },
+			cornersDotOptions: {
+			  type: "square",
+				
+			},
+		  };
+		  
+	  const	current_option03 ={
+			width:200,
+			height:200,
+			data:"123",
+		  //image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+		  dotsOptions: {
+			type: "dots",
+			color: "#5332f5",
+		  },
+		  cornersSquareOptions: {
+			type: "dots",
+			/* gradient: {
+			  type: "linear",
+			  rotation: Math.PI * 0.2,
+			  colorStops: [{
+				offset: 0,
+				color: 'blue'
+			  }, {
+				offset: 1,
+				color: 'red'
+			  }]
+			}, */
+		  },
+		  cornersDotOptions: {
+			type: "square",
+			
+		  },
+		};
+					
+	const	current_option04 ={
+	width:200,
+	height:200,
+	data:"123",
+		 // image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+		  dotsOptions: {
+			type: "dots",
+			color: "#09873e",
+		  },
+		  cornersSquareOptions: {
+			type: "dots",
+			/* gradient: {
+			  type: "linear",
+			  rotation: Math.PI * 0.2,
+			  colorStops: [{
+				offset: 0,
+				color: 'blue'
+			  }, {
+				offset: 1,
+				color: 'red'
+			  }]
+			}, */
+		  },
+		  cornersDotOptions: {
+			type: "dots",
+			
+		  },
+		};
+								
+	const	current_option05 ={
+		width:900,
+		height:900,
+		data:"asd",
+		  margin:"100",
+		  image: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2Ff218b0a9c3369345b255e5e22f99b3de.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652528362&t=45bbd7f0fd4b49d3655ab84364c6c8d1",
+		  dotsOptions: {
+			type: "square",
+			color: "#f666bd",
+		  },
+		  cornersSquareOptions: {
+			type: "extra-rounded",
+			/* gradient: {
+			  type: "linear",
+			  rotation: Math.PI * 0.2,
+			  colorStops: [{
+				offset: 0,
+				color: 'blue'
+			  }, {
+				offset: 1,
+				color: 'red'
+			  }]
+			}, */
+		  },
+		  cornersDotOptions: {
+			type: "square",
+			
+		  },
+			textTopOptions:{
+				words:"你哈",
+				color:"#000000",
+				fontSize:"50"
+			},
+			textBottomOptions:{
+				words:"你哈",
+				color:"#000000",
+				fontSize:"50"
+			},
+		 backgroundOptions: {
+		  	bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2Ff218b0a9c3369345b255e5e22f99b3de.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652528362&t=45bbd7f0fd4b49d3655ab84364c6c8d1",
+		   } 
+		};
+											
+	const	current_option06 ={
+		 width:200,
+		 height:200,
+		 data:"asd",
+		//  image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+		 dotsOptions: {
+		   type: "square",
+		   //color:'#2b00ff',
+		   gradient: {
+		      type: "linear", //radial,
+		      
+		      colorStops: [{ offset: 0, color: 'blue' }, { offset: 1, color: 'red' }]
+		   },
+		 },
+		  cornersSquareOptions: {
+			type: "square",
+			/* gradient: {
+			  type: "linear",
+			  rotation: Math.PI * 0.2,
+			  colorStops: [{
+				offset: 0,
+				color: 'blue'
+			  }, {
+				offset: 1,
+				color: 'red'
+			  }]
+			}, */
+		  },
+		  cornersDotOptions: {
+			type: "square",
+			
+		  },
+		  /* backgroundOptions: {
+		   	bg_image:""
+		    } */
+		};
+														
+		const	current_option07 ={
+		width:200,
+		height:200,
+		data:"asd",
+			  margin:"20",
+			  //sssimage: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+			  dotsOptions: {
+				type: "square",
+				color: "#000000",
+			  },
+			  cornersSquareOptions: {
+				type: "square",
+				/* gradient: {
+				  type: "linear",
+				  rotation: Math.PI * 0.2,
+				  colorStops: [{
+					offset: 0,
+					color: 'blue'
+				  }, {
+					offset: 1,
+					color: 'red'
+				  }]
+				}, */
+			  },
+			  cornersDotOptions: {
+				type: "square",
+				
+			  },
+			 backgroundOptions: {
+			  	bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2F4dee2146d0015afd15fd5f767d7ef5cc.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650437814&t=316afa80d5d41208022da268dc434a06"
+			   }
+			};
+					
+		const	current_option08 ={
+			width:200,
+			height:200,
+			data:"asd",
+			 // image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+			  dotsOptions: {
+			    type: "square",
+			    //color:'#2b00ff',
+			    gradient: {
+			       type: "linear", //radial,
+			       rotation: Math.PI * 0.2,
+			       colorStops: [{ offset: 0, color: '#f97500' }, { offset: 0.5, color: '#64f900' }, { offset: 1, color: '#00f9c1' }]
+			    },
+			  },
+			  cornersSquareOptions: {
+				type: "dots",
+				/* gradient: {
+				  type: "linear",
+				  rotation: Math.PI * 0.2,
+				  colorStops: [{
+					offset: 0,
+					color: 'blue'
+				  }, {
+					offset: 1,
+					color: 'red'
+				  }]
+				}, */
+			  },
+			  cornersDotOptions: {
+				type: "dots",
+				
+			  },
+			};
+					
+		const	current_option09 ={
+			 width:200,
+			 height:200,
+			 data:"asd",
+			  margin:"30",
+			  //image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+			  dotsOptions: {
+				type: "square",
+				color: "#000000",
+			  },
+			  cornersSquareOptions: {
+				type: "square",
+				/* gradient: {
+				  type: "linear",
+				  rotation: Math.PI * 0.2,
+				  colorStops: [{
+					offset: 0,
+					color: 'blue'
+				  }, {
+					offset: 1,
+					color: 'red'
+				  }]
+				}, */
+			  },
+			  cornersDotOptions: {
+				type: "dots",
+				color:"#00f0f9",
+			  },
+			  backgroundOptions: {
+			   	bg_image:"https://img0.baidu.com/it/u=3008997962,3905054114&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
+			  }
+			};
+	  const	current_option10 ={
+		width:200,
+		height:200,
+		data:"asd",
+		margin:"30",
+		//image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+		 dotsOptions: {
+		   type: "square",
+		   //color:'#2b00ff',
+		   gradient: {
+			  type: "linear", //radial,
+			  
+			  colorStops: [{ offset: 0, color: 'blue' }, { offset: 1, color: 'red' }]
+		   },
+		 },
+		  cornersSquareOptions: {
+			type: "square",
+			/* gradient: {
+			  type: "linear",
+			  rotation: Math.PI * 0.2,
+			  colorStops: [{
+				offset: 0,
+				color: 'blue'
+			  }, {
+				offset: 1,
+				color: 'red'
+			  }]
+			}, */
+		  },
+		  cornersDotOptions: {
+			type: "square",
+			
+		  },
+		  backgroundOptions: {
+			bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_water_img%2F19%2F01%2F10%2Fe52f0a8e246039a1f53220b31140c7ca.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650444850&t=a3ccf2c6a2482fd7b243d4a41786eaa8"
+		  }
+		};
+		
+		const	current_option11 ={
+			width:200,
+			height:200,
+			data:"asd",
+			margin:"20",
+			//image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+			dotsOptions: {
+			   type: "square",
+			   //color:'#2b00ff',
+			   gradient: {
+			      type: "linear", //radial,
+			      rotation: Math.PI * 0.2,
+			      colorStops: [{ offset: 0, color: '#f7a300' }, { offset: 0.3, color: '#00eef7' }, { offset: 0.6, color: '#f700ae' },{ offset: 1, color: '#f7a300' }]
+			   },
+			 },
+			  cornersSquareOptions: {
+				type: "square",
+				/* gradient: {
+				  type: "linear",
+				  rotation: Math.PI * 0.2,
+				  colorStops: [{
+					offset: 0,
+					color: 'blue'
+				  }, {
+					offset: 1,
+					color: 'red'
+				  }]
+				}, */
+			  },
+			  cornersDotOptions: {
+				type: "square",
+				
+			  },
+			  backgroundOptions: {
+			   	bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2Ff218b0a9c3369345b255e5e22f99b3de.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650503841&t=1f1ee0b1f77db6e158ecca0b72c5549f"
+			  } 
+			};
+			
+			const	current_option12 ={
+			width:200,
+			height:200,
+			data:"asd",
+				//margin:"20",
+				//image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+				dotsOptions: {
+				   type: "square",
+				   //color:'#2b00ff',
+				   gradient: {
+				      type: "linear", //radial,
+				     // rotation: Math.PI * 0.2,
+				      colorStops: [{ offset: 0, color: '#ff0303' }, { offset: 0.2, color: '#ff4a03' }, { offset: 0.4, color: '#ff6e03' },{ offset: 0.6, color: '#ffa903' },{ offset: 0.8, color: '#ffde03' },{ offset:1, color: '#fffc03' }]
+				   },
+				 },
+				  cornersSquareOptions: {
+					type: "square",
+					/* gradient: {
+					  type: "linear",
+					  rotation: Math.PI * 0.2,
+					  colorStops: [{
+						offset: 0,
+						color: 'blue'
+					  }, {
+						offset: 1,
+						color: 'red'
+					  }]
+					}, */
+				  },
+				  cornersDotOptions: {
+					type: "square",
+					
+				  },
+				
+				  //backgroundOptions: {
+				  // 	bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2Ff218b0a9c3369345b255e5e22f99b3de.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650503841&t=1f1ee0b1f77db6e158ecca0b72c5549f"
+				 // } 
+				};
+			const	current_option13 ={
+			width:200,
+			height:200,
+			data:"asd",
+				//margin:"20",
+				//image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+				dotsOptions: {
+				   type: "square",
+				   //color:'#2b00ff',
+				   gradient: {
+				      type: "linear", //radial,
+				     // rotation: Math.PI * 0.2,
+				      colorStops: [{ offset: 0, color: '#ff0303' }, { offset: 0.2, color: '#ff4a03' }, { offset: 0.4, color: '#ff6e03' },{ offset: 0.6, color: '#ffa903' },{ offset: 0.8, color: '#ffde03' },{ offset:1, color: '#fffc03' }]
+				   },
+				 },
+				  cornersSquareOptions: {
+					type: "square",
+					/* gradient: {
+					  type: "linear",
+					  rotation: Math.PI * 0.2,
+					  colorStops: [{
+						offset: 0,
+						color: 'blue'
+					  }, {
+						offset: 1,
+						color: 'red'
+					  }]
+					}, */
+				  },
+					textTopOptions:{
+						words:"asdka",
+						color:"#000000",
+						font:"20"
+					},
+					textBottomOptions:{
+						words:"asdka",
+						color:"#000000",
+						font:"10"
+					},
+				  cornersDotOptions: {
+					type: "square",
+					
+				  },
+				  //backgroundOptions: {
+				  // 	bg_image:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F19%2F04%2F09%2Ff218b0a9c3369345b255e5e22f99b3de.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650503841&t=1f1ee0b1f77db6e158ecca0b72c5549f"
+				 // } 
+				};
+ //const qrCode = new QRCodeStyling(current_option01) ;
+		//	qrCode.append(document.getElementById("canvas"));
+					 /*	const qrCode2 = new QRCodeStyling(current_option02) ;
+           
+      qrCode2.append(document.getElementById("canvas2"));
+			const qrCode3 = new QRCodeStyling(current_option03) ;
+			qrCode3.append(document.getElementById("canvas3"));
+			
+			const qrCode4 = new QRCodeStyling(current_option04) ;
+			qrCode4.append(document.getElementById("canvas4")); */
+			
+			const qrCode5 = new QRCodeStyling(current_option05) ;
+			qrCode5.append(document.getElementById("canvas5"));
+			
+		/* 	const qrCode6 = new QRCodeStyling(current_option06) ;
+			qrCode6.append(document.getElementById("canvas6"));
+			 
+			const qrCode7 = new QRCodeStyling(current_option07) 
+			qrCode7.append(document.getElementById("canvas7"));
+			
+			const qrCode8 = new QRCodeStyling(current_option08) ;
+			qrCode8.append(document.getElementById("canvas8"));
+			
+			const qrCode9 = new QRCodeStyling(current_option09) ;
+			qrCode9.append(document.getElementById("canvas9"));
+			
+			const qrCode10 = new QRCodeStyling(current_option10); 
+			qrCode10.append(document.getElementById("canvas10"));
+			
+			const qrCode11 = new QRCodeStyling(current_option11) ;
+			qrCode11.append(document.getElementById("canvas11"));
+			
+			const qrCode12 = new QRCodeStyling(current_option12) ;
+			qrCode12.append(document.getElementById("canvas12"));
+			
+			const qrCode13 = new QRCodeStyling(current_option13) ;
+			qrCode13.append(document.getElementById("canvas13")); */
             // qrCode2.download()
         </script>
     </body>

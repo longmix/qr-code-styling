@@ -73,5 +73,23 @@ export default function sanitizeOptions(options: RequiredOptions): RequiredOptio
     }
   }
 
+  if(newOptions.textTopOptions) {
+	newOptions.textTopOptions = {
+	  ...newOptions.textTopOptions,
+	  words:String(newOptions.textTopOptions.words),
+	  color:String(newOptions.textTopOptions.color),
+	  fontSize:Number(newOptions.textTopOptions.fontSize)
+	};
+  }
+  
+if(newOptions.textBottomOptions) {
+	newOptions.textBottomOptions = {
+	  ...newOptions.textBottomOptions,
+	  words:String(newOptions.textBottomOptions.words),
+	  color:String(newOptions.textBottomOptions.color),
+	  fontSize:Number(newOptions.textBottomOptions.fontSize)
+	};
+  }
+
   return newOptions;
 }
