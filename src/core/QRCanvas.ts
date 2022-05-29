@@ -79,18 +79,100 @@ export default class QRCanvas {
     this._qr = qr;
 	this.clear();
 	
+	if (this._options.textTopOptions && this._options.textTopOptions.words && this._options.textTopOptions.fontSize) {
+		
+		if(this._options.margin && !this._options.textBottomOptions){
+			if(this._options.image){
+				if(this._options.textTopOptions.words.length > 1){
+					this._options.margin = this._options.margin + 0;
+					console.log('asd',this._options.margin)
+				}else{
+					this._options.margin = this._options.margin + this._options.textTopOptions.fontSize;
+					console.log('asdf',this._options.margin)
+				}
+					
+			} else{
+				
+					this._options.margin = this._options.margin + this._options.textTopOptions.fontSize;
+				console.log('asdfg',this._options.margin)
+				
+			} 
+						
+			
+			
+		 }else if(!this._options.margin && !this._options.textBottomOptions){
+			 console.log('5555',this._options.margin)
+			
+				 this._options.margin = this._options.textTopOptions.fontSize;
+			
+		}else if(this._options.margin && this._options.textBottomOptions ){
+			if(this._options.image){
+				//if(this._options.textBottomOptions.words && this._options.textBottomOptions.words.length > 0){
+					this._options.margin = this._options.margin + 0 ;
+					console.log('6666',this._options.margin)
+			
+			}else{
+				this._options.margin = this._options.margin + this._options.textTopOptions.fontSize/2;
+				console.log('7788',this._options.margin)
+			}
+			
+				
+				
+		}
+	}
+	
+	
+	if (this._options.textBottomOptions && this._options.textBottomOptions.words && this._options.textBottomOptions.fontSize) {
+		if(this._options.margin && !this._options.textTopOptions){
+			
+				if(this._options.image){
+					if(this._options.textBottomOptions.words.length > 1){
+						this._options.margin = this._options.margin + 0;
+						console.log('asd',this._options.margin)
+					}else{
+						this._options.margin = this._options.margin + this._options.textBottomOptions.fontSize;
+						console.log('asdf',this._options.margin)
+					}
+						
+				} else{
+					
+						this._options.margin = this._options.margin + this._options.textBottomOptions.fontSize;
+					console.log('asdfg',this._options.margin)
+					
+				} 
+			
+		}else if(!this._options.margin && !this._options.textTopOptions){
+		
+				this._options.margin = this._options.textBottomOptions.fontSize;
+				
+		}else if(this._options.margin && this._options.textTopOptions  ){
+			if(this._options.image){
+			//	if( this._options.textTopOptions.words && this._options.textTopOptions.words.length > 1){
+					 this._options.margin = this._options.margin + 0 ;
+					 console.log('6666',this._options.margin)
+					
+			
+			}else{
+				this._options.margin = this._options.margin + this._options.textBottomOptions.fontSize/2;
+				console.log('7788',this._options.margin)
+			}
+			
+				
+		}
+	
+	}
+	
+	
+	this.drawBackground();
+	
 	if (this._options.textTopOptions && this._options.textTopOptions.words) {
 		this.drawTopText();
 	
 	}
-	
 	if (this._options.textBottomOptions && this._options.textBottomOptions.words) {
 		this.drowBottomText();
 	
-	}
-	
-	this.drawBackground();
-	
+	}	
     if (this._options.image) {
 			
       await this.loadImage();
@@ -193,7 +275,7 @@ export default class QRCanvas {
 		
 		bg_image.onerror = () => {
 		  //console.log('加载失败')
-		    alert('图片加载失败') 
+		    alert('图片加载失败0x001:' + bg_image.src) 
 		}
 		
 	  }else if (options.backgroundOptions.color) {
@@ -224,40 +306,7 @@ export default class QRCanvas {
 		if(options.textTopOptions && options.textTopOptions.fontSize) {
 		  canvasContext.font = options.textTopOptions.fontSize + "px" + " " + "Arial";
 		 // console.log('sss',canvasContext.font)
-		 if(options.margin && !options.textBottomOptions ){
-			 console.log('4444',options.margin)
-			 if(options.backgroundOptions && options.backgroundOptions.bg_image){
-				 this._options.margin = options.margin + options.textTopOptions.fontSize ;
-				  console.log('3333',options.margin)
-			 }else{
-				 if(options.textTopOptions.words.length > 1){
-				  	this._options.margin = options.margin
-				 	 console.log('2222',options.margin)
-				  }else{
-				   this._options.margin = options.margin + options.textTopOptions.fontSize ;
-				 console.log('1111',options.margin)
-				  }
-			 }
-			
-			
-		 }else if(!options.margin && !options.textBottomOptions){
-			 console.log('5555',options.margin)
-			  this._options.margin = options.textTopOptions.fontSize;
-			 
-			 
-			  
-		 }
-		 else if(options.margin && options.textBottomOptions){
-			 if(options.textBottomOptions.fontSize && options.textBottomOptions.words && options.textBottomOptions.words.length > 0){
-				 options.margin = this._options.margin + options.textBottomOptions.fontSize/2 ;
-				 console.log('6666',options.margin)
-			 }else{
-				 this._options.margin = options.margin + options.textTopOptions.fontSize;
-				 console.log('7777',options.margin)
-			 }
-				
-				
-			}
+		 
 		  
 		  //this._options.margin = this._options.margin + 200 ;
 		  
@@ -265,6 +314,7 @@ export default class QRCanvas {
 		}
 		//const font = options.textTopOptions.font;
 		if(options.textTopOptions && options.textTopOptions.fontSize) {
+			console.log('9999')
 		  canvasContext.fillText(options.textTopOptions.words, width, options.textTopOptions.fontSize);
 		}
 		
@@ -298,42 +348,13 @@ export default class QRCanvas {
 		  canvasContext.font = options.textBottomOptions.fontSize + "px" + " " + "Arial";
 		  //console.log('sss',canvasContext.font)
 			
-			if(options.margin && !options.textTopOptions){
-				if(options.backgroundOptions && options.backgroundOptions.bg_image){
-					this._options.margin = options.margin + options.textBottomOptions.fontSize ;
-				}else{
-					if(options.textBottomOptions.words.length > 1){
-						this._options.margin = options.margin
-						console.log('asdf',options.margin)
-					}else{
-						this._options.margin = options.margin + options.textBottomOptions.fontSize;
-					console.log('asdfg',this._options.margin)
-					}
-				}
-				
-			}else if(!options.margin && !options.textTopOptions){
-				/* if(options.textBottomOptions && options.textBottomOptions.fontSize && options.textBottomOptions.fontSize > 20){
-					this._options.margin = options.textBottomOptions.fontSize + 20;
-				} */
-					this._options.margin = options.textBottomOptions.fontSize;
-				
-			}
-			else if(options.margin && options.textTopOptions ){
 			
-				if(options.textTopOptions.fontSize && options.textTopOptions.words && options.textTopOptions.words.length > 0){
-					 this._options.margin = options.margin + options.textTopOptions.fontSize/2 ;
-					 console.log('6666',options.margin)
-				}else{
-					 this._options.margin = options.margin + options.textBottomOptions.fontSize;
-					 console.log('7777',options.margin)
-				}
-					
-			}
 		  //this._options.margin = this._options.margin + 200 ;
 		  //console.log('rrrrrr', this._options.margin)
 		}
 		
 			if(options.textBottomOptions && options.textBottomOptions.fontSize) {
+				console.log('9999')
 				//const text001 = this._canvas.height - this._options.margin + options.textBottomOptions.fontSize;
 				canvasContext.fillText(options.textBottomOptions.words, width, this._canvas.height - 10);
 			}
@@ -571,7 +592,7 @@ export default class QRCanvas {
       };
 			image.onerror = () => {
 			  console.log('加载失败')
-			     alert('图片加载失败')
+			     alert('图片加载失败0x002:' + image.src) 
 			}
       image.src = options.image;
 	
