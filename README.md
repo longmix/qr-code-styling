@@ -1,11 +1,23 @@
-# QR Code Styling
+# 二维码图片美化
 [![Version](https://img.shields.io/npm/v/qr-code-styling.svg)](https://www.npmjs.org/package/qr-code-styling)
+
+生成二维码并美化的二维码图片的JavaScript开发包，支持上传Logo，定制二维码风格。
 
 JavaScript library for generating QR codes with a logo and styling.
 
+体验完整功能 [https://yanyubao.tseo.cn/Supplier/BeautyQrcodeMgr/index.html]
+
 Try it here https://qr-code-styling.com
 
+[http://yanyubao.tseo.cn/Supplier/BeautyQrcodeMgr/index.html]:http://yanyubao.tseo.cn/Supplier/BeautyQrcodeMgr/index.html "二维码图片在线美化"
+
+
+如果您有任何意见、建议、标注或问题，请联系我们，让我们一起创建更炫酷的开发包。
+
 If you have issues / suggestions / notes / questions, please open an issue or contact me. Let's create a cool library together.
+
+
+
 ### Examples
 <p float="left">
 <img style="display:inline-block" src="https://raw.githubusercontent.com/kozakdenys/qr-code-styling/master/src/assets/facebook_example_new.png" width="240" />
